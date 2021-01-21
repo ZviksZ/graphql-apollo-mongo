@@ -1,6 +1,15 @@
 const graphql = require('graphql');
 
-const {GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLBoolean} = graphql;
+const {
+   GraphQLObjectType,
+   GraphQLString,
+   GraphQLSchema,
+   GraphQLID,
+   GraphQLInt,
+   GraphQLList,
+   GraphQLNonNull,
+   GraphQLBoolean
+} = graphql;
 
 const Movies = require('../models/movie');
 const Directors = require('../models/director');
@@ -145,7 +154,6 @@ const Query = new GraphQLObjectType({
          type: new GraphQLList(MovieType),
          args: {name: {type: GraphQLString}},
          resolve(parent, {name}) {
-            console.log(name)
             return Movies.find({name: {$regex: name, $options: "i"}});
          }
       },
